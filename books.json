@@ -1,0 +1,38 @@
+[
+    {
+        "id": 1,
+        "title": "To Kill a Mockingbird",
+        "author": "Harper Lee",
+        "isbn": "978-0-06-093546-7"
+    },
+    {
+        "id": 2,
+        "title": "1984",
+        "author": "George Orwell",
+        "isbn": "978-0-452-28423-4"
+    },
+    {
+        "id": 3,
+        "title": "The Great Gatsby",
+        "author": "F. Scott Fitzgerald",
+        "isbn": "978-0-7432-7356-5"
+    },
+    {
+        "id": 4,
+        "title": "Moby Dick",
+        "author": "Herman Melville",
+        "isbn": "978-1-5011-2631-5"
+    },
+    {
+        "id": 5,
+        "title": "War and Peace",
+        "author": "Leo Tolstoy",
+        "isbn": "978-1-85715-062-9"
+    },
+    {
+        "id": 6,
+        "title": "Dragon Hacks Winners Manual",
+        "author": "Mario",
+        "isbn": "968-0-06-093546-7"
+    }
+]

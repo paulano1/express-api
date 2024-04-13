@@ -1,11 +1,56 @@
 const express = require("express");
 const app = express();
 const port = process.env.PORT || 3001;
+const cors = require("cors");
+const { addBook, deleteBook, loadBooks } = require('./helper');
+
+app.use(cors());
+app.use(express.json()); // Middleware to parse JSON bodies
 
 app.get("/", (req, res) => res.type('html').send(html));
 
-const server = app.listen(port, () => console.log(`Example app listening on port ${port}!`));
 
+
+
+app.get("/", (req, res) => {
+  res.type('html').send(html);
+});
+
+app.get("/books", (req, res) => {
+  const books = loadBooks();
+  res.json(books);
+});
+
+// Endpoint to add a new book
+app.post("/books", (req, res) => {
+  const newBook = req.body; // assuming the new book details are passed in the body of the request
+  if (!newBook.title || !newBook.author || !newBook.isbn) {
+    return res.status(400).json({ error: 'Please provide title, author, and ISBN' });
+  }
+  addBook(newBook);
+  res.status(201).json(newBook);
+});
+
+// Endpoint to delete a book by ID
+app.delete("/books/:id", (req, res) => {
+  const bookId = parseInt(req.params.id);
+  const booksBefore = loadBooks();
+  deleteBook(bookId);
+  const booksAfter = loadBooks();
+
+  if (booksBefore.length === booksAfter.length) {
+    res.status(404).json({ error: 'Book not found' });
+  } else {
+    res.status(200).json({ message: 'Book deleted successfully' });
+  }
+});
+
+
+
+
+
+
+const server = app.listen(port, () => console.log(`Running on localhost:${port}`));
 server.keepAliveTimeout = 120 * 1000;
 server.headersTimeout = 120 * 1000;
 
