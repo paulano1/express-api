@@ -17,7 +17,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("/books", (req, res) => {
-  const books = loadBooks();
+  //TODO - Add code to fetch the books from the JSON file
   res.json(books);
 });
 
@@ -27,16 +27,14 @@ app.post("/books", (req, res) => {
   if (!newBook.title || !newBook.author || !newBook.isbn) {
     return res.status(400).json({ error: 'Please provide title, author, and ISBN' });
   }
-  addBook(newBook);
+  //TODO - Add code to add the new book
   res.status(201).json(newBook);
 });
 
 // Endpoint to delete a book by ID
 app.delete("/books/:id", (req, res) => {
   const bookId = parseInt(req.params.id);
-  const booksBefore = loadBooks();
-  deleteBook(bookId);
-  const booksAfter = loadBooks();
+  //TODO - Add code to delete the book with the specified ID
 
   if (booksBefore.length === booksAfter.length) {
     res.status(404).json({ error: 'Book not found' });
